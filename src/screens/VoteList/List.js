@@ -16,7 +16,7 @@ import ListItem from './ListItem';
 import getProcedures from '../../graphql/queries/getProcedures';
 import GET_FILTERS from '../../graphql/queries/local/filters';
 
-const Wrapper = styled.View`
+const Wrapper = styled.ScrollView`
   flex: 1;
   background-color: #fff;
   width: ${({ width }) => width};
@@ -50,7 +50,7 @@ const SortIcon = styled.Text`
 
 const PickerFinishButton = styled.Button``;
 
-const SectionList = styled.SectionList``;
+const FlatList = styled.FlatList``;
 
 const PAGE_SIZE = 20;
 const STORAGE_KEY = 'VoteList.Filters';
@@ -285,72 +285,12 @@ class List extends Component {
     if (!procedures || procedures.length === 0) {
       return [];
     }
-    const preparedData = [
-      {
-        data: [],
-      },
-    ];
-    if (listType !== 'HOT') {
-      preparedData[0].data.push({ type: 'sort' });
-    }
-    if (listType === 'VOTING') {
-      preparedData.push({
-        title: 'Vergangen',
-        data: [],
-      });
-    }
+    const preparedData = [];
+    return procedures;
     const proceduresSorted = [...procedures];
-    proceduresSorted.forEach(procedure => {
-      if (!this.filterProcedures(procedure)) {
-        return;
-      }
-      if (
-        listType === 'VOTING' &&
-        ((new Date(procedure.voteDate) < new Date() && procedure.voteDate !== null) ||
-          procedure.completed)
-      ) {
-        preparedData[1].data.push({
-          ...procedure,
-          date: procedure.voteDate || false,
-          listType,
-        });
-      } else {
-        preparedData[0].data.push({
-          ...procedure,
-          date: procedure.voteDate || false,
-          listType,
-        });
-      }
-    });
-    return preparedData;
   };
 
-  renderItem = onClick => ({ item }) => {
-    const { listType } = this.props;
-    if (item.type === 'sort') {
-      if (Platform.OS === 'ios') {
-        const curSort = SORTERS[listType].find(({ key }) => key === this.state.sort);
-        return (
-          <SortRow onPress={() => this.setState({ sorterOpened: true })}>
-            <ListSectionHeader title={curSort.title} />
-            <SortIcon>▼</SortIcon>
-          </SortRow>
-        );
-      }
-      return (
-        <Picker
-          selectedValue={this.state.sort}
-          style={{ paddingLeft: 18, height: 35, backgroundColor: '#e6edf2' }}
-          onValueChange={this.onChangeSort}
-        >
-          {SORTERS[listType].map(({ key, title }) => (
-            <Picker.Item key={key} label={title} value={key} />
-          ))}
-        </Picker>
-      );
-    }
-    return <ListItem item={item} onClick={onClick} />;
-  };
+  renderItem = onClick => ({ item }) => <ListItem item={item} onClick={onClick} />;
 
   render() {
     const { data, listType } = this.props;
@@ -358,8 +298,7 @@ class List extends Component {
 
     return (
       <Wrapper onLayout={this.onLayout} width={this.state.width}>
-        <SectionList
-          contentOffset={{ y: listType !== 'HOT' ? 35 : 0 }}
+        <FlatList
           ListFooterComponent={() =>
             data.loading || !fetchedAll ? (
               <Loading>
@@ -367,21 +306,92 @@ class List extends Component {
               </Loading>
             ) : null
           }
-          sections={this.prepareData()}
-          stickySectionHeadersEnabled
-          keyExtractor={({ _id }) => _id}
+          data={this.prepareData()}
           onRefresh={() => {
             this.setState({ fetchedAll: false });
             data.refetch();
           }}
+          horizontal
           refreshing={data.networkStatus === 4}
           renderItem={this.renderItem(this.onItemClick)}
-          renderSectionHeader={({ section }) => {
-            if (section.data.length > 0) {
-              return <ListSectionHeader title={section.title} />;
+          onEndReached={() => {
+            if (!data.loading && !fetchedAll) {
+              data.fetchMore({
+                variables: {
+                  offset: data.procedures ? data.procedures.length : PAGE_SIZE,
+                },
+                updateQuery: (previousResult, { fetchMoreResult }) => {
+                  if (!fetchMoreResult || fetchMoreResult.procedures.length === 0) {
+                    this.setState({ fetchedAll: true });
+                    return previousResult;
+                  }
+                  return {
+                    procedures: unionBy(
+                      previousResult.procedures,
+                      fetchMoreResult.procedures,
+                      '_id',
+                    ),
+                  };
+                },
+              });
             }
-            return null;
           }}
+        />
+        <FlatList
+          ListFooterComponent={() =>
+            data.loading || !fetchedAll ? (
+              <Loading>
+                <ActivityIndicator />
+              </Loading>
+            ) : null
+          }
+          data={this.prepareData()}
+          onRefresh={() => {
+            this.setState({ fetchedAll: false });
+            data.refetch();
+          }}
+          horizontal
+          refreshing={data.networkStatus === 4}
+          renderItem={this.renderItem(this.onItemClick)}
+          onEndReached={() => {
+            if (!data.loading && !fetchedAll) {
+              data.fetchMore({
+                variables: {
+                  offset: data.procedures ? data.procedures.length : PAGE_SIZE,
+                },
+                updateQuery: (previousResult, { fetchMoreResult }) => {
+                  if (!fetchMoreResult || fetchMoreResult.procedures.length === 0) {
+                    this.setState({ fetchedAll: true });
+                    return previousResult;
+                  }
+                  return {
+                    procedures: unionBy(
+                      previousResult.procedures,
+                      fetchMoreResult.procedures,
+                      '_id',
+                    ),
+                  };
+                },
+              });
+            }
+          }}
+        />
+        <FlatList
+          ListFooterComponent={() =>
+            data.loading || !fetchedAll ? (
+              <Loading>
+                <ActivityIndicator />
+              </Loading>
+            ) : null
+          }
+          data={this.prepareData()}
+          onRefresh={() => {
+            this.setState({ fetchedAll: false });
+            data.refetch();
+          }}
+          horizontal
+          refreshing={data.networkStatus === 4}
+          renderItem={this.renderItem(this.onItemClick)}
           onEndReached={() => {
             if (!data.loading && !fetchedAll) {
               data.fetchMore({

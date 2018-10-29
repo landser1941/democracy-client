@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
+import LinearGradient from 'react-native-linear-gradient';
 
 import ActivityIndex from './ActivityIndex';
 import DateTime from './Date';
@@ -10,13 +11,58 @@ import StatusIcon from '../components/StatusIcon';
 const DemocracyIcon = styled(DemocracyIconComponent)``;
 
 const ListItemWrapper = styled.View`
-  flex-direction: row;
+  align-items: center;
+  width: 300;
+  shadow-color: #000;
+  shadow-offset: 1px 1px;
+  shadow-opacity: 0.5;
+  shadow-radius: 2px;
+`;
+
+const TopWrapper = styled(LinearGradient).attrs({
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 0 },
+  colors: ['#ffab7d', '#e49469'],
+})`
+  height: 30;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-top-left-radius: 10;
+  border-top-right-radius: 10;
 `;
 
 const MainWrapper = styled.View`
-  flex: 1;
-  padding-right: 10;
-  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  padding-vertical: 18;
+  padding-horizontal: 18;
+`;
+
+const BottomWrapper = styled(LinearGradient).attrs({
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 0 },
+  colors: ['#ffab7d', '#e49469'],
+})`
+  height: 30;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom-left-radius: 10;
+  border-bottom-right-radius: 10;
+`;
+
+const SubjectGroup = styled.Text`
+  color: #fff;
+  font-weight: 600;
+`;
+
+const SubjectGroupDecent = styled.Text`
+  color: #fff;
+  font-weight: 300;
 `;
 
 const SideWrapper = styled.View`
@@ -25,10 +71,17 @@ const SideWrapper = styled.View`
   min-width: 50;
 `;
 
+const Type = styled.Text`
+  font-size: 20;
+  color: #e49469;
+  padding-bottom: 20;
+`;
+
 const Title = styled.Text.attrs({ numberOfLines: 3 })`
   font-size: 17;
   color: #030303;
 `;
+
 const Tags = styled.Text.attrs({ numberOfLines: 2 })`
   padding-top: 8;
   font-size: 15;
@@ -45,34 +98,34 @@ const ListItem = ({
   votedGovernment,
   voted,
   viewedStatus,
+  subjectGroups,
+  type,
+  ...rest
 }) => (
   <ListItemWrapper>
-    <StatusIcon
-      push={viewedStatus === 'PUSH'}
-      unreaded={viewedStatus === 'NEW' && !voted && !active}
-    />
+    <TopWrapper>
+      <SubjectGroup>{subjectGroups[0]}</SubjectGroup>
+    </TopWrapper>
     <MainWrapper>
+      <Type>{type}</Type>
+      {date && <DateTime date={date} />}
       <Title>{title}</Title>
-      {!children && <Tags>{tags && tags.join(', ')}</Tags>}
+      {/* {!children && <Tags>{rest && Object.keys(rest).join(', ')}</Tags>} */}
       {children}
     </MainWrapper>
-    <SideWrapper>
-      <ActivityIndex
-        procedureId={procedureId}
-        activityIndex={activityIndex}
-        active={active}
-        listView
-      />
+    <BottomWrapper>
+      <SubjectGroup>
+        <SubjectGroupDecent>bereits</SubjectGroupDecent> {activityIndex} Stimmen
+      </SubjectGroup>
 
-      {voted && (
+      {/* {voted && (
         <DemocracyIcon
           name={`checkmark${votedGovernment ? '-double' : ''}`}
           size={14}
           color="#35a335"
         />
-      )}
-      {date && <DateTime date={date} />}
-    </SideWrapper>
+      )} */}
+    </BottomWrapper>
   </ListItemWrapper>
 );
 
