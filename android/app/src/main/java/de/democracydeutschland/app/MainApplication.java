@@ -5,8 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
-import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import org.wonday.pdf.RCTPdfView;
 import com.horcrux.svg.SvgPackage;
 import com.horcrux.svg.SvgPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -77,9 +77,9 @@ public class MainApplication extends NavigationApplication implements INotificat
     	// No need to add RnnPackage and MainReactPackage
       	return Arrays.<ReactPackage>asList(
       		//new MainReactPackage(),
+            new RNFetchBlobPackage(),
       		new RNNotificationsPackage(MainApplication.this),
             new RCTPdfView(),
-            new RNFetchBlobPackage(),
             new SvgPackage(),
             new RNDeviceInfo(),
             new ReactNativeConfigPackage(),

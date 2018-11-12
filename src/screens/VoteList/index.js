@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, SegmentedControlIOS, Dimensions } from 'react-native';
+import { Platform, SegmentedControlIOS, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 import { Navigation, Navigator } from 'react-native-navigation';
