@@ -3,7 +3,7 @@ import {
   ScreenVisibilityListener as RNNScreenVisibilityListener,
 } from 'react-native-navigation';
 import { NetInfo } from 'react-native';
-import Reactotron from 'reactotron-react-native';
+// import Reactotron from 'reactotron-react-native';
 
 import Config from './src/config';
 
@@ -21,9 +21,9 @@ import topTabs from './src/screens/VoteList/topTabs';
 
 import './src/services/browserLinks';
 
-Reactotron.configure() // controls connection & communication settings
-  .useReactNative() // add all built-in react native plugins
-  .connect(); // let's connect!
+// Reactotron.configure() // controls connection & communication settings
+//   .useReactNative() // add all built-in react native plugins
+//   .connect(); // let's connect!
 
 registerScreens();
 
