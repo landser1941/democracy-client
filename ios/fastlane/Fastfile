@@ -30,7 +30,8 @@ platform :ios do
 
   version = get_version_number(
     xcodeproj: "democracyclient.xcodeproj",
-    target: "democracyclient"
+    target: "democracyclient",
+    configuration: "Release"
   )
 
   changelog = read_changelog(
