@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
+import com.sha256lib.Sha256Package;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.horcrux.svg.SvgPackage;
@@ -23,7 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.sha256lib.Sha256Package;
 import com.oblador.keychain.KeychainPackage;
 
 import com.wix.reactnativenotifications.RNNotificationsPackage;
