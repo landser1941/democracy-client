@@ -1881,11 +1881,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_ENTITLEMENTS = democracyclient/democracyclient.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 56;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
 				DISPLAY_NAME = DEMOCRACY;
@@ -1924,11 +1925,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_ENTITLEMENTS = democracyclient/democracyclient.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
 				DISPLAY_NAME = DEMOCRACY;
 				HEADER_SEARCH_PATHS = (
@@ -2204,7 +2206,10 @@
 		35371EF0A26540FE8E8C6FF7 /* Internal.Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.internal;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -2246,6 +2251,7 @@
 				PRODUCT_NAME = democracyclient;
 				PROVISIONING_PROFILE = "91f5606d-f407-4a91-aebb-a42e7af238d9";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.democracy-deutschland.clientapp.internal";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Internal.Release;
@@ -2253,7 +2259,10 @@
 		372D2E70239A4C8C8532BBB8 /* Alpha.Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.alpha;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -2295,6 +2304,7 @@
 				PRODUCT_NAME = democracyclient;
 				PROVISIONING_PROFILE = "7fd6acc3-3aa8-4be6-9b3c-fdac02a9f1db";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.democracy-deutschland.clientapp.alpha";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Alpha.Release;
@@ -2302,7 +2312,10 @@
 		49D69F33DCE943429D061678 /* Internal.Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.internal;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
@@ -2347,6 +2360,7 @@
 				PRODUCT_NAME = democracyclient;
 				PROVISIONING_PROFILE = "f8eae583-3649-4f8d-8eed-a77c58e543bb";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.democracy-deutschland.clientapp.internal";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Internal.Debug;
@@ -2752,11 +2766,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.beta;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_ID_SUFFIX = .beta;
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_ENTITLEMENTS = democracyclient/democracyclient.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 56;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
 				DISPLAY_NAME = "DEMOCRACY Beta";
@@ -2784,7 +2800,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.democracy-deutschland.clientapp.beta";
 				PRODUCT_NAME = democracyclient;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.democracy-deutschland.clientapp.beta";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2895,7 +2911,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 56;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
 				DISPLAY_NAME = "DEMOCRACY Alpha";
@@ -3052,7 +3068,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
 				DISPLAY_NAME = "DEMOCRACY Beta";
 				HEADER_SEARCH_PATHS = (
@@ -3162,8 +3178,11 @@
 		F07070D529B343E19734CDBF /* Alpha.Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.alpha;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				BUNDLE_OS_TYPE_CODE = APPL;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A4B84UJD7M;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3205,8 +3224,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.democracy-deutschland.clientapp.alpha";
 				PRODUCT_NAME = democracyclient;
-				PROVISIONING_PROFILE = "fcf89106-54de-486c-b87f-b03c9c60cb94";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development de.democracy-deutschland.clientapp.alpha";
+				PROVISIONING_PROFILE = "7fd6acc3-3aa8-4be6-9b3c-fdac02a9f1db";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.democracy-deutschland.clientapp.alpha";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Alpha.Debug;
@@ -3214,7 +3234,10 @@
 		F13EDA007AD54D30814A7D9E /* Beta.Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.beta;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_OS_TYPE_CODE = APPL;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -3256,6 +3279,7 @@
 				PRODUCT_NAME = democracyclient;
 				PROVISIONING_PROFILE = "ea444e69-8054-4233-a98b-e39512163690";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.democracy-deutschland.clientapp.beta";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Beta.Release;
